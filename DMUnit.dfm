@@ -447,6 +447,7 @@ object DM: TDM
   object IBQCAD_MODELO: TIBQuery
     Database = Conection
     Transaction = Transaction
+    Active = True
     BufferChunks = 1000
     CachedUpdates = False
     SQL.Strings = (
@@ -1362,98 +1363,6 @@ object DM: TDM
     Left = 232
     Top = 376
   end
-  object CAD_ENDERECO: TIBDataSet
-    Database = Conection
-    Transaction = Transaction
-    BufferChunks = 1000
-    CachedUpdates = False
-    DeleteSQL.Strings = (
-      'delete from CAD_ENDERECO'
-      'where'
-      '  CD_PESSOA = :OLD_CD_PESSOA and'
-      '  NR_SEQ = :OLD_NR_SEQ')
-    InsertSQL.Strings = (
-      'insert into CAD_ENDERECO'
-      '  (CD_PESSOA, DS_LOGRADOURO, DS_NUMERO, DS_BAIRRO, DS_CEP, '
-      'DT_TRANSACAO)'
-      'values'
-      '  (:CD_PESSOA, :DS_LOGRADOURO, :DS_NUMERO, :DS_BAIRRO, :DS_CEP, '
-      ':DT_TRANSACAO)')
-    RefreshSQL.Strings = (
-      'Select '
-      '  CD_PESSOA,'
-      '  NR_SEQ,'
-      '  DS_LOGRADOURO,'
-      '  DS_NUMERO,'
-      '  DS_BAIRRO,'
-      '  DS_CEP,'
-      '  DT_TRANSACAO'
-      'from CAD_ENDERECO '
-      'where'
-      '  CD_PESSOA = :CD_PESSOA and'
-      '  NR_SEQ = :NR_SEQ')
-    SelectSQL.Strings = (
-      
-        'select * from CAD_ENDERECO where CD_PESSOA = :PCDPESSOA and NR_S' +
-        'EQ = :PCDSEQ')
-    ModifySQL.Strings = (
-      'update CAD_ENDERECO'
-      'set'
-      '  DS_LOGRADOURO = :DS_LOGRADOURO,'
-      '  DS_NUMERO = :DS_NUMERO,'
-      '  DS_BAIRRO = :DS_BAIRRO,'
-      '  DS_CEP = :DS_CEP,'
-      '  DT_TRANSACAO = :DT_TRANSACAO'
-      'where'
-      '  CD_PESSOA = :OLD_CD_PESSOA and'
-      '  NR_SEQ = :OLD_NR_SEQ')
-    Active = True
-    Left = 232
-    Top = 440
-    object CAD_ENDERECOCD_PESSOA: TIntegerField
-      DisplayWidth = 13
-      FieldName = 'CD_PESSOA'
-      Origin = 'CAD_ENDERECO.CD_PESSOA'
-      Required = True
-    end
-    object CAD_ENDERECONR_SEQ: TIntegerField
-      DisplayWidth = 10
-      FieldName = 'NR_SEQ'
-      Origin = 'CAD_ENDERECO.NR_SEQ'
-      Required = True
-    end
-    object CAD_ENDERECODS_LOGRADOURO: TIBStringField
-      DisplayWidth = 20
-      FieldName = 'DS_LOGRADOURO'
-      Origin = 'CAD_ENDERECO.DS_LOGRADOURO'
-      Size = 100
-    end
-    object CAD_ENDERECODS_NUMERO: TIBStringField
-      DisplayWidth = 18
-      FieldName = 'DS_NUMERO'
-      Origin = 'CAD_ENDERECO.DS_NUMERO'
-      FixedChar = True
-      Size = 30
-    end
-    object CAD_ENDERECODS_BAIRRO: TIBStringField
-      DisplayWidth = 14
-      FieldName = 'DS_BAIRRO'
-      Origin = 'CAD_ENDERECO.DS_BAIRRO'
-      Size = 60
-    end
-    object CAD_ENDERECODS_CEP: TIBStringField
-      DisplayWidth = 10
-      FieldName = 'DS_CEP'
-      Origin = 'CAD_ENDERECO.DS_CEP'
-      Size = 8
-    end
-    object CAD_ENDERECODT_TRANSACAO: TDateField
-      DisplayWidth = 18
-      FieldName = 'DT_TRANSACAO'
-      Origin = 'CAD_ENDERECO.DT_TRANSACAO'
-      Required = True
-    end
-  end
   object IBQCAD_ENDERECO: TIBQuery
     Database = Conection
     Transaction = Transaction
@@ -1461,9 +1370,23 @@ object DM: TDM
     BufferChunks = 1000
     CachedUpdates = False
     SQL.Strings = (
-      'select * from CAD_ENDERECO')
+      
+        'select endereco.cd_pessoa, endereco.nr_seq, endereco.ds_logradou' +
+        'ro, endereco.ds_numero, endereco.ds_bairro, endereco.ds_cep, end' +
+        'ereco.dt_transacao, endereco.cd_cidade, cidade.nm_cidade'
+      'from cad_endereco endereco'
+      
+        'inner join cad_cidade cidade on (endereco.cd_cidade = cidade.cd_' +
+        'cidade)'
+      'where endereco.cd_pessoa = :PCDPESSOA')
     Left = 464
     Top = 432
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'PCDPESSOA'
+        ParamType = ptUnknown
+      end>
     object IBQCAD_ENDERECOCD_PESSOA: TIntegerField
       FieldName = 'CD_PESSOA'
       Origin = 'CAD_ENDERECO.CD_PESSOA'
@@ -1499,6 +1422,16 @@ object DM: TDM
       FieldName = 'DT_TRANSACAO'
       Origin = 'CAD_ENDERECO.DT_TRANSACAO'
       Required = True
+    end
+    object IBQCAD_ENDERECOCD_CIDADE: TIntegerField
+      FieldName = 'CD_CIDADE'
+      Origin = 'CAD_ENDERECO.CD_CIDADE'
+      Required = True
+    end
+    object IBQCAD_ENDERECONM_CIDADE: TIBStringField
+      FieldName = 'NM_CIDADE'
+      Origin = 'CAD_CIDADE.NM_CIDADE'
+      Size = 50
     end
   end
   object CAD_CONTATO: TIBDataSet
@@ -1571,6 +1504,98 @@ object DM: TDM
       FieldName = 'DS_EMAIL'
       Origin = 'CAD_CONTATO.DS_EMAIL'
       Size = 30
+    end
+  end
+  object CAD_ENDERECO: TIBDataSet
+    Database = Conection
+    Transaction = Transaction
+    BufferChunks = 1000
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'delete from CAD_ENDERECO'
+      'where'
+      '  CD_PESSOA = :OLD_CD_PESSOA and'
+      '  NR_SEQ = :OLD_NR_SEQ')
+    InsertSQL.Strings = (
+      'insert into CAD_ENDERECO'
+      '  (CD_PESSOA, DS_LOGRADOURO, DS_NUMERO, DS_BAIRRO, DS_CEP, '
+      'DT_TRANSACAO, CD_CIDADE)'
+      'values'
+      '  (:CD_PESSOA, :DS_LOGRADOURO, :DS_NUMERO, :DS_BAIRRO, :DS_CEP, '
+      ':DT_TRANSACAO, :CD_CIDADE)')
+    RefreshSQL.Strings = (
+      'Select '
+      '  CD_PESSOA,'
+      '  NR_SEQ,'
+      '  DS_LOGRADOURO,'
+      '  DS_NUMERO,'
+      '  DS_BAIRRO,'
+      '  DS_CEP,'
+      '  DT_TRANSACAO,'
+      '  CD_CIDADE'
+      'from CAD_ENDERECO '
+      'where'
+      '  CD_PESSOA = :CD_PESSOA and'
+      '  NR_SEQ = :NR_SEQ')
+    SelectSQL.Strings = (
+      
+        'select * from CAD_ENDERECO where CD_PESSOA = :PCDPESSOA and NR_S' +
+        'EQ = :PCDSEQ')
+    ModifySQL.Strings = (
+      'update CAD_ENDERECO'
+      'set'
+      '  DS_LOGRADOURO = :DS_LOGRADOURO,'
+      '  DS_NUMERO = :DS_NUMERO,'
+      '  DS_BAIRRO = :DS_BAIRRO,'
+      '  DS_CEP = :DS_CEP,'
+      '  DT_TRANSACAO = :DT_TRANSACAO,'
+      '  CD_CIDADE = :CD_CIDADE'
+      'where'
+      '  CD_PESSOA = :OLD_CD_PESSOA and'
+      '  NR_SEQ = :OLD_NR_SEQ')
+    Active = True
+    Left = 232
+    Top = 440
+    object CAD_ENDERECOCD_PESSOA: TIntegerField
+      FieldName = 'CD_PESSOA'
+      Origin = 'CAD_ENDERECO.CD_PESSOA'
+      Required = True
+    end
+    object CAD_ENDERECONR_SEQ: TIntegerField
+      FieldName = 'NR_SEQ'
+      Origin = 'CAD_ENDERECO.NR_SEQ'
+      Required = True
+    end
+    object CAD_ENDERECODS_LOGRADOURO: TIBStringField
+      FieldName = 'DS_LOGRADOURO'
+      Origin = 'CAD_ENDERECO.DS_LOGRADOURO'
+      Size = 100
+    end
+    object CAD_ENDERECODS_NUMERO: TIBStringField
+      FieldName = 'DS_NUMERO'
+      Origin = 'CAD_ENDERECO.DS_NUMERO'
+      FixedChar = True
+      Size = 30
+    end
+    object CAD_ENDERECODS_BAIRRO: TIBStringField
+      FieldName = 'DS_BAIRRO'
+      Origin = 'CAD_ENDERECO.DS_BAIRRO'
+      Size = 60
+    end
+    object CAD_ENDERECODS_CEP: TIBStringField
+      FieldName = 'DS_CEP'
+      Origin = 'CAD_ENDERECO.DS_CEP'
+      Size = 8
+    end
+    object CAD_ENDERECODT_TRANSACAO: TDateField
+      FieldName = 'DT_TRANSACAO'
+      Origin = 'CAD_ENDERECO.DT_TRANSACAO'
+      Required = True
+    end
+    object CAD_ENDERECOCD_CIDADE: TIntegerField
+      FieldName = 'CD_CIDADE'
+      Origin = 'CAD_ENDERECO.CD_CIDADE'
+      Required = True
     end
   end
 end

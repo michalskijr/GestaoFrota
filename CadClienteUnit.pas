@@ -50,11 +50,10 @@ type
     btnExcluir: TBitBtn;
     btnGravar: TBitBtn;
     btnCancelar: TBitBtn;
-    DataSourceEndereco: TDataSource;
     btnTeste: TButton;
-    DSEnderecoConsulta: TDataSource;
+    DataSourceEndereco: TDataSource;
     Label5: TLabel;
-    DBGrid1: TDBGrid;
+    gridEndereco: TDBGrid;
     DBGrid2: TDBGrid;
     Label11: TLabel;
     DataSourceContato: TDataSource;
@@ -70,18 +69,24 @@ var
 
 implementation
 
-uses DMUnit;
+uses DMUnit, CadEnderecoUnit;
 
 {$R *.dfm}
 
 procedure TFormCadCliente.btnTesteClick(Sender: TObject);
 begin
-  DM.CAD_ENDERECONR_SEQ.AsInteger := 0;
-  DM.CAD_ENDERECODT_TRANSACAO.AsDateTime := Date;
-  DM.CAD_ENDERECO.Post;
-  DM.Transaction.CommitRetaining;
+
+  FormCadEndereco.ShowModal;
+
+//  gridEndereco.DataSource := DSEnderecoConsulta;
+//  gridEndereco.Refresh;
+
+//  DM.CAD_ENDERECONR_SEQ.AsInteger := 0;
+//  DM.CAD_ENDERECODT_TRANSACAO.AsDateTime := Date;
+//  DM.CAD_ENDERECO.Post;
+//  DM.Transaction.CommitRetaining;
   //DM.IBQCAD_CIDADE.Close;
-  ShowMessage('Registro gravado com sucesso!');
+//  ShowMessage('Registro gravado com sucesso!');
 
 
 

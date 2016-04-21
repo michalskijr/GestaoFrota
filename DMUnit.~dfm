@@ -1411,37 +1411,44 @@ object DM: TDM
     Left = 232
     Top = 440
     object CAD_ENDERECOCD_PESSOA: TIntegerField
+      DisplayWidth = 13
       FieldName = 'CD_PESSOA'
       Origin = 'CAD_ENDERECO.CD_PESSOA'
       Required = True
     end
     object CAD_ENDERECONR_SEQ: TIntegerField
+      DisplayWidth = 10
       FieldName = 'NR_SEQ'
       Origin = 'CAD_ENDERECO.NR_SEQ'
       Required = True
     end
     object CAD_ENDERECODS_LOGRADOURO: TIBStringField
+      DisplayWidth = 20
       FieldName = 'DS_LOGRADOURO'
       Origin = 'CAD_ENDERECO.DS_LOGRADOURO'
       Size = 100
     end
     object CAD_ENDERECODS_NUMERO: TIBStringField
+      DisplayWidth = 18
       FieldName = 'DS_NUMERO'
       Origin = 'CAD_ENDERECO.DS_NUMERO'
       FixedChar = True
       Size = 30
     end
     object CAD_ENDERECODS_BAIRRO: TIBStringField
+      DisplayWidth = 14
       FieldName = 'DS_BAIRRO'
       Origin = 'CAD_ENDERECO.DS_BAIRRO'
       Size = 60
     end
     object CAD_ENDERECODS_CEP: TIBStringField
+      DisplayWidth = 10
       FieldName = 'DS_CEP'
       Origin = 'CAD_ENDERECO.DS_CEP'
       Size = 8
     end
     object CAD_ENDERECODT_TRANSACAO: TDateField
+      DisplayWidth = 18
       FieldName = 'DT_TRANSACAO'
       Origin = 'CAD_ENDERECO.DT_TRANSACAO'
       Required = True
@@ -1492,6 +1499,78 @@ object DM: TDM
       FieldName = 'DT_TRANSACAO'
       Origin = 'CAD_ENDERECO.DT_TRANSACAO'
       Required = True
+    end
+  end
+  object CAD_CONTATO: TIBDataSet
+    Database = Conection
+    Transaction = Transaction
+    BufferChunks = 1000
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'delete from CAD_CONTATO'
+      'where'
+      '  NR_SEQ = :OLD_NR_SEQ and'
+      '  CD_PESSOA = :OLD_CD_PESSOA')
+    InsertSQL.Strings = (
+      'insert into CAD_CONTATO'
+      '  (CD_PESSOA, NM_CONTATO, NR_TELEFONE, DS_EMAIL)'
+      'values'
+      '  (:CD_PESSOA, :NM_CONTATO, :NR_TELEFONE, :DS_EMAIL)')
+    RefreshSQL.Strings = (
+      'Select '
+      '  NR_SEQ,'
+      '  CD_PESSOA,'
+      '  NM_CONTATO,'
+      '  NR_TELEFONE,'
+      '  DS_EMAIL'
+      'from CAD_CONTATO '
+      'where'
+      '  NR_SEQ = :NR_SEQ and'
+      '  CD_PESSOA = :CD_PESSOA')
+    SelectSQL.Strings = (
+      'select * from CAD_CONTATO where CD_PESSOA = :PCDPESSOA')
+    ModifySQL.Strings = (
+      'update CAD_CONTATO'
+      'set'
+      '  NM_CONTATO = :NM_CONTATO,'
+      '  NR_TELEFONE = :NR_TELEFONE,'
+      '  DS_EMAIL = :DS_EMAIL'
+      'where'
+      '  NR_SEQ = :OLD_NR_SEQ and'
+      '  CD_PESSOA = :OLD_CD_PESSOA')
+    Active = True
+    Left = 232
+    Top = 504
+    object CAD_CONTATONR_SEQ: TIntegerField
+      DisplayWidth = 12
+      FieldName = 'NR_SEQ'
+      Origin = 'CAD_CONTATO.NR_SEQ'
+      Required = True
+    end
+    object CAD_CONTATOCD_PESSOA: TIntegerField
+      DisplayWidth = 13
+      FieldName = 'CD_PESSOA'
+      Origin = 'CAD_CONTATO.CD_PESSOA'
+      Required = True
+    end
+    object CAD_CONTATONM_CONTATO: TIBStringField
+      DisplayWidth = 24
+      FieldName = 'NM_CONTATO'
+      Origin = 'CAD_CONTATO.NM_CONTATO'
+      Required = True
+      Size = 60
+    end
+    object CAD_CONTATONR_TELEFONE: TIBStringField
+      DisplayWidth = 16
+      FieldName = 'NR_TELEFONE'
+      Origin = 'CAD_CONTATO.NR_TELEFONE'
+      Size = 12
+    end
+    object CAD_CONTATODS_EMAIL: TIBStringField
+      DisplayWidth = 14
+      FieldName = 'DS_EMAIL'
+      Origin = 'CAD_CONTATO.DS_EMAIL'
+      Size = 30
     end
   end
 end

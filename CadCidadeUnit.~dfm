@@ -1,6 +1,6 @@
 object FormCadCidade: TFormCadCidade
-  Left = 252
-  Top = 141
+  Left = 427
+  Top = 414
   Width = 464
   Height = 223
   Caption = 'Cadastro de Cidade'

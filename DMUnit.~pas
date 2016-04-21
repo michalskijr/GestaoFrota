@@ -170,6 +170,12 @@ type
     IBQCAD_ENDERECODS_BAIRRO: TIBStringField;
     IBQCAD_ENDERECODS_CEP: TIBStringField;
     IBQCAD_ENDERECODT_TRANSACAO: TDateField;
+    CAD_CONTATO: TIBDataSet;
+    CAD_CONTATONR_SEQ: TIntegerField;
+    CAD_CONTATOCD_PESSOA: TIntegerField;
+    CAD_CONTATONM_CONTATO: TIBStringField;
+    CAD_CONTATONR_TELEFONE: TIBStringField;
+    CAD_CONTATODS_EMAIL: TIBStringField;
   private
     { Private declarations }
   public
