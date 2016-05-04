@@ -1,6 +1,6 @@
 object FormCadEndereco: TFormCadEndereco
-  Left = 355
-  Top = 131
+  Left = 357
+  Top = 137
   Width = 464
   Height = 223
   Caption = 'Cadastro de Endere'#231'o'
@@ -183,43 +183,27 @@ object FormCadEndereco: TFormCadEndereco
       TabOrder = 7
     end
     object PanelBotoes: TPanel
-      Left = 0
-      Top = 144
-      Width = 449
+      Left = 280
+      Top = 136
+      Width = 169
       Height = 41
       Color = clBtnHighlight
       TabOrder = 8
-      object btnNovo: TBitBtn
-        Left = 8
-        Top = 8
-        Width = 75
-        Height = 25
-        Caption = 'Novo'
-        TabOrder = 0
-      end
-      object btnExcluir: TBitBtn
-        Left = 188
-        Top = 8
-        Width = 75
-        Height = 25
-        Caption = 'Excluir'
-        TabOrder = 1
-      end
       object btnGravar: TBitBtn
-        Left = 278
+        Left = 6
         Top = 8
         Width = 75
         Height = 25
         Caption = 'Gravar'
-        TabOrder = 2
+        TabOrder = 0
       end
       object btnCancelar: TBitBtn
-        Left = 368
+        Left = 88
         Top = 8
         Width = 75
         Height = 25
         Caption = 'Cancelar'
-        TabOrder = 3
+        TabOrder = 1
       end
     end
   end

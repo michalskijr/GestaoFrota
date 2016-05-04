@@ -1,9 +1,9 @@
 object DM: TDM
   OldCreateOrder = False
-  Left = 349
-  Top = 97
-  Height = 591
-  Width = 560
+  Left = 310
+  Top = 114
+  Height = 596
+  Width = 697
   object Conection: TIBDatabase
     Connected = True
     DatabaseName = 
@@ -1098,9 +1098,9 @@ object DM: TDM
       '  CD_PESSOA = :OLD_CD_PESSOA')
     InsertSQL.Strings = (
       'insert into CAD_PESSOA'
-      '  (NM_RZ_SOCIAL, TP_PESSOA, DT_TRANSACAO)'
+      '  (CD_PESSOA, NM_RZ_SOCIAL, TP_PESSOA, DT_TRANSACAO)'
       'values'
-      '  (:NM_RZ_SOCIAL, :TP_PESSOA, :DT_TRANSACAO)')
+      '  (:CD_PESSOA, :NM_RZ_SOCIAL, :TP_PESSOA, :DT_TRANSACAO)')
     RefreshSQL.Strings = (
       'Select '
       '  CD_PESSOA,'
@@ -1154,13 +1154,12 @@ object DM: TDM
     DeleteSQL.Strings = (
       'delete from CAD_FISICA'
       'where'
-      '  NR_RG = :OLD_NR_RG and'
       '  CD_PESSOA = :OLD_CD_PESSOA')
     InsertSQL.Strings = (
       'insert into CAD_FISICA'
-      '  (CD_PESSOA, NR_CPF, DT_NASCIMENTO, IN_SEXO)'
+      '  (CD_PESSOA, NR_RG, NR_CPF, DT_NASCIMENTO, IN_SEXO)'
       'values'
-      '  (:CD_PESSOA, :NR_CPF, :DT_NASCIMENTO, :IN_SEXO)')
+      '  (:CD_PESSOA, :NR_RG, :NR_CPF, :DT_NASCIMENTO, :IN_SEXO)')
     RefreshSQL.Strings = (
       'Select '
       '  NR_RG,'
@@ -1170,20 +1169,17 @@ object DM: TDM
       '  IN_SEXO'
       'from CAD_FISICA '
       'where'
-      '  NR_RG = :NR_RG and'
       '  CD_PESSOA = :CD_PESSOA')
     SelectSQL.Strings = (
-      
-        'select * from CAD_FISICA where CD_PESSOA = :PCDPESSOA and NR_RG ' +
-        '= :PCDRG')
+      'select * from CAD_FISICA where CD_PESSOA = :PCDPESSOA')
     ModifySQL.Strings = (
       'update CAD_FISICA'
       'set'
+      '  NR_RG = :NR_RG,'
       '  NR_CPF = :NR_CPF,'
       '  DT_NASCIMENTO = :DT_NASCIMENTO,'
       '  IN_SEXO = :IN_SEXO'
       'where'
-      '  NR_RG = :OLD_NR_RG and'
       '  CD_PESSOA = :OLD_CD_PESSOA')
     Active = True
     Left = 232
@@ -1282,7 +1278,7 @@ object DM: TDM
     DeleteSQL.Strings = (
       'delete from CAD_CLIENTE'
       'where'
-      '  CD_CLIENTE = :OLD_CD_CLIENTE')
+      '  CD_PESSOA = :OLD_CD_PESSOA')
     InsertSQL.Strings = (
       'insert into CAD_CLIENTE'
       '  (CD_PESSOA, DT_TRANSACAO)'
@@ -1295,7 +1291,7 @@ object DM: TDM
       '  DT_TRANSACAO'
       'from CAD_CLIENTE '
       'where'
-      '  CD_CLIENTE = :CD_CLIENTE')
+      '  CD_PESSOA = :CD_PESSOA')
     SelectSQL.Strings = (
       'select * from CAD_CLIENTE where CD_CLIENTE = :PCDCLIENTE')
     ModifySQL.Strings = (
@@ -1596,6 +1592,20 @@ object DM: TDM
       FieldName = 'CD_CIDADE'
       Origin = 'CAD_ENDERECO.CD_CIDADE'
       Required = True
+    end
+  end
+  object IBQCD_PESSOA: TIBQuery
+    Database = Conection
+    Transaction = Transaction
+    Active = True
+    BufferChunks = 1000
+    CachedUpdates = False
+    SQL.Strings = (
+      'SELECT MAX (CD_PESSOA + 1) AS CD_PESSOA FROM CAD_PESSOA')
+    Left = 560
+    Top = 8
+    object IBQCD_PESSOACD_PESSOA: TLargeintField
+      FieldName = 'CD_PESSOA'
     end
   end
 end

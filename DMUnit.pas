@@ -179,6 +179,8 @@ type
     CAD_ENDERECOCD_CIDADE: TIntegerField;
     IBQCAD_ENDERECOCD_CIDADE: TIntegerField;
     IBQCAD_ENDERECONM_CIDADE: TIBStringField;
+    IBQCD_PESSOA: TIBQuery;
+    IBQCD_PESSOACD_PESSOA: TLargeintField;
   private
     { Private declarations }
   public

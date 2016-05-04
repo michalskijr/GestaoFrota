@@ -1,6 +1,6 @@
 object FormCadEndereco: TFormCadEndereco
-  Left = 355
-  Top = 131
+  Left = 357
+  Top = 137
   Width = 464
   Height = 223
   Caption = 'Cadastro de Endere'#231'o'
@@ -22,7 +22,7 @@ object FormCadEndereco: TFormCadEndereco
     TabOrder = 0
     object Label1: TLabel
       Left = 376
-      Top = 96
+      Top = 88
       Width = 60
       Height = 13
       Caption = 'C'#243'd. Pessoa'
@@ -92,13 +92,13 @@ object FormCadEndereco: TFormCadEndereco
     end
     object DBEdit1: TDBEdit
       Left = 376
-      Top = 112
+      Top = 104
       Width = 65
       Height = 21
       DataField = 'CD_PESSOA'
       DataSource = DataSource
       Enabled = False
-      TabOrder = 0
+      TabOrder = 9
     end
     object edtNumSeq: TDBEdit
       Left = 8
@@ -108,7 +108,7 @@ object FormCadEndereco: TFormCadEndereco
       DataField = 'NR_SEQ'
       DataSource = DataSource
       Enabled = False
-      TabOrder = 1
+      TabOrder = 0
     end
     object edtLogradouro: TDBEdit
       Left = 48
@@ -118,7 +118,7 @@ object FormCadEndereco: TFormCadEndereco
       CharCase = ecUpperCase
       DataField = 'DS_LOGRADOURO'
       DataSource = DataSource
-      TabOrder = 2
+      TabOrder = 1
     end
     object edtNum: TDBEdit
       Left = 8
@@ -128,7 +128,7 @@ object FormCadEndereco: TFormCadEndereco
       CharCase = ecUpperCase
       DataField = 'DS_NUMERO'
       DataSource = DataSource
-      TabOrder = 3
+      TabOrder = 2
     end
     object edtBairro: TDBEdit
       Left = 88
@@ -138,7 +138,7 @@ object FormCadEndereco: TFormCadEndereco
       CharCase = ecUpperCase
       DataField = 'DS_BAIRRO'
       DataSource = DataSource
-      TabOrder = 4
+      TabOrder = 3
     end
     object edtCep: TDBEdit
       Left = 240
@@ -147,7 +147,7 @@ object FormCadEndereco: TFormCadEndereco
       Height = 21
       DataField = 'DS_CEP'
       DataSource = DataSource
-      TabOrder = 5
+      TabOrder = 4
     end
     object edtDtTransacao: TDBEdit
       Left = 352
@@ -157,7 +157,7 @@ object FormCadEndereco: TFormCadEndereco
       DataField = 'DT_TRANSACAO'
       DataSource = DataSource
       Enabled = False
-      TabOrder = 6
+      TabOrder = 5
     end
     object dbEstado: TDBLookupComboBox
       Left = 8
@@ -167,7 +167,7 @@ object FormCadEndereco: TFormCadEndereco
       KeyField = 'CD_UF'
       ListField = 'NM_UF'
       ListSource = DataSourceEstado
-      TabOrder = 7
+      TabOrder = 6
       OnClick = dbEstadoClick
     end
     object dbCidade: TDBLookupComboBox
@@ -180,18 +180,40 @@ object FormCadEndereco: TFormCadEndereco
       KeyField = 'CD_CIDADE'
       ListField = 'NM_CIDADE'
       ListSource = DataSourceCidade
+      TabOrder = 7
+    end
+    object PanelBotoes: TPanel
+      Left = 0
+      Top = 144
+      Width = 449
+      Height = 41
+      Color = clBtnHighlight
       TabOrder = 8
+      object btnGravar: TBitBtn
+        Left = 278
+        Top = 8
+        Width = 75
+        Height = 25
+        Caption = 'Gravar'
+        TabOrder = 0
+      end
+      object btnCancelar: TBitBtn
+        Left = 368
+        Top = 8
+        Width = 75
+        Height = 25
+        Caption = 'Cancelar'
+        TabOrder = 1
+      end
     end
   end
   object DataSource: TDataSource
     DataSet = DM.CAD_ENDERECO
-    Left = 80
-    Top = 128
+    Left = 120
   end
   object DataSourceEstado: TDataSource
     DataSet = IBQESTADO
-    Left = 112
-    Top = 128
+    Left = 152
   end
   object IBQESTADO: TIBQuery
     Database = DM.Conection
@@ -204,8 +226,7 @@ object FormCadEndereco: TFormCadEndereco
       'from cad_uf uf'
       'where uf.cd_uf in (select cidade.cd_uf'
       '                    from cad_cidade cidade)')
-    Left = 144
-    Top = 128
+    Left = 184
     object IBQESTADOCD_UF: TIntegerField
       FieldName = 'CD_UF'
       Origin = 'CAD_UF.CD_UF'
@@ -219,8 +240,7 @@ object FormCadEndereco: TFormCadEndereco
   end
   object DataSourceCidade: TDataSource
     DataSet = IBQCIDADE
-    Left = 176
-    Top = 128
+    Left = 216
   end
   object IBQCIDADE: TIBQuery
     Database = DM.Conection
@@ -230,8 +250,7 @@ object FormCadEndereco: TFormCadEndereco
     CachedUpdates = False
     SQL.Strings = (
       'select * from CAD_CIDADE where CD_UF = :PCDUF')
-    Left = 208
-    Top = 128
+    Left = 248
     ParamData = <
       item
         DataType = ftUnknown
