@@ -1,0 +1,951 @@
+object FormMovFrete: TFormMovFrete
+  Left = 393
+  Top = 155
+  Width = 629
+  Height = 443
+  Caption = 'Cadastro de Frete'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel: TPanel
+    Left = 0
+    Top = 0
+    Width = 617
+    Height = 409
+    TabOrder = 0
+    object Label1: TLabel
+      Left = 8
+      Top = 8
+      Width = 33
+      Height = 13
+      Caption = 'C'#243'digo'
+      FocusControl = edtCod
+    end
+    object Label9: TLabel
+      Left = 56
+      Top = 8
+      Width = 88
+      Height = 13
+      Caption = 'Data da transa'#231#227'o'
+      FocusControl = edtDtTransacao
+    end
+    object PageControl: TPageControl
+      Left = 0
+      Top = 48
+      Width = 609
+      Height = 353
+      ActivePage = tabDestino
+      TabOrder = 2
+      object tabFrete: TTabSheet
+        Caption = 'Cadastro do Frete'
+        object Label2: TLabel
+          Left = 8
+          Top = 160
+          Width = 37
+          Height = 13
+          Caption = 'Ve'#237'culo'
+          FocusControl = edtCodVeiculo
+        end
+        object Label3: TLabel
+          Left = 8
+          Top = 120
+          Width = 43
+          Height = 13
+          Caption = 'Motorista'
+          FocusControl = edtCodMotorista
+        end
+        object Label4: TLabel
+          Left = 8
+          Top = 80
+          Width = 67
+          Height = 13
+          Caption = 'Tipo da Carga'
+          FocusControl = edtCodTpCarga
+        end
+        object Label5: TLabel
+          Left = 8
+          Top = 0
+          Width = 32
+          Height = 13
+          Caption = 'Cliente'
+          FocusControl = edtCodCliente
+        end
+        object Label6: TLabel
+          Left = 8
+          Top = 40
+          Width = 84
+          Height = 13
+          Caption = 'Cidade de Origem'
+          FocusControl = edtCodCidade
+        end
+        object Label7: TLabel
+          Left = 8
+          Top = 200
+          Width = 98
+          Height = 13
+          Caption = 'Endere'#231'o de destino'
+          FocusControl = edtEndereco
+        end
+        object Label8: TLabel
+          Left = 8
+          Top = 240
+          Width = 24
+          Height = 13
+          Caption = 'Valor'
+          FocusControl = edtValor
+        end
+        object edtCodVeiculo: TDBEdit
+          Left = 8
+          Top = 176
+          Width = 33
+          Height = 21
+          DataField = 'CD_VEICULO'
+          DataSource = DSFrete
+          Enabled = False
+          TabOrder = 12
+          OnExit = edtCodVeiculoExit
+        end
+        object edtCodMotorista: TDBEdit
+          Left = 8
+          Top = 136
+          Width = 33
+          Height = 21
+          DataField = 'CD_MOTORISTA'
+          DataSource = DSFrete
+          Enabled = False
+          TabOrder = 9
+          OnExit = edtCodMotoristaExit
+        end
+        object edtCodTpCarga: TDBEdit
+          Left = 8
+          Top = 96
+          Width = 33
+          Height = 21
+          DataField = 'CD_TIPO_CARGA'
+          DataSource = DSFrete
+          Enabled = False
+          TabOrder = 6
+          OnExit = edtCodTpCargaExit
+        end
+        object edtCodCliente: TDBEdit
+          Left = 8
+          Top = 16
+          Width = 33
+          Height = 21
+          DataField = 'CD_CLIENTE'
+          DataSource = DSFrete
+          Enabled = False
+          TabOrder = 0
+          OnExit = edtCodClienteExit
+        end
+        object edtCodCidade: TDBEdit
+          Left = 8
+          Top = 56
+          Width = 33
+          Height = 21
+          DataField = 'CD_CIDADE_ORIGEM'
+          DataSource = DSFrete
+          Enabled = False
+          TabOrder = 3
+          OnExit = edtCodCidadeExit
+        end
+        object edtEndereco: TDBEdit
+          Left = 8
+          Top = 216
+          Width = 393
+          Height = 21
+          CharCase = ecUpperCase
+          DataField = 'DS_END_DESTINO'
+          DataSource = DSFrete
+          TabOrder = 15
+        end
+        object edtValor: TDBEdit
+          Left = 8
+          Top = 256
+          Width = 73
+          Height = 21
+          DataField = 'VL_FRETE'
+          DataSource = DSFrete
+          TabOrder = 16
+        end
+        object btnVeiculo: TBitBtn
+          Left = 48
+          Top = 176
+          Width = 33
+          Height = 21
+          Caption = '...'
+          Enabled = False
+          TabOrder = 13
+          OnClick = btnVeiculoClick
+        end
+        object btnCliente: TBitBtn
+          Left = 48
+          Top = 16
+          Width = 33
+          Height = 21
+          Caption = '...'
+          Enabled = False
+          TabOrder = 1
+          OnClick = btnClienteClick
+        end
+        object edtCliente: TEdit
+          Left = 88
+          Top = 16
+          Width = 313
+          Height = 21
+          Enabled = False
+          TabOrder = 2
+        end
+        object btnCidade: TBitBtn
+          Left = 48
+          Top = 56
+          Width = 33
+          Height = 21
+          Caption = '...'
+          Enabled = False
+          TabOrder = 4
+          OnClick = btnCidadeClick
+        end
+        object edtCidade: TEdit
+          Left = 88
+          Top = 56
+          Width = 313
+          Height = 21
+          Enabled = False
+          TabOrder = 5
+        end
+        object btnTpCarga: TBitBtn
+          Left = 48
+          Top = 96
+          Width = 33
+          Height = 21
+          Caption = '...'
+          Enabled = False
+          TabOrder = 7
+          OnClick = btnTpCargaClick
+        end
+        object edtTpCarga: TEdit
+          Left = 88
+          Top = 96
+          Width = 313
+          Height = 21
+          Enabled = False
+          TabOrder = 8
+        end
+        object btnMotorista: TBitBtn
+          Left = 48
+          Top = 136
+          Width = 33
+          Height = 21
+          Caption = '...'
+          Enabled = False
+          TabOrder = 10
+          OnClick = btnMotoristaClick
+        end
+        object edtMotorista: TEdit
+          Left = 88
+          Top = 136
+          Width = 313
+          Height = 21
+          Enabled = False
+          TabOrder = 11
+        end
+        object edtVeiculo: TEdit
+          Left = 88
+          Top = 176
+          Width = 313
+          Height = 21
+          Enabled = False
+          TabOrder = 14
+        end
+        object PanelBotoes: TPanel
+          Left = 8
+          Top = 284
+          Width = 489
+          Height = 41
+          Color = clBtnHighlight
+          TabOrder = 17
+          object btnNovo: TBitBtn
+            Left = 8
+            Top = 8
+            Width = 75
+            Height = 25
+            Caption = 'Novo'
+            TabOrder = 0
+            OnClick = btnNovoClick
+          end
+          object btnExcluir: TBitBtn
+            Left = 220
+            Top = 8
+            Width = 75
+            Height = 25
+            Caption = 'Excluir'
+            TabOrder = 1
+            OnClick = btnExcluirClick
+          end
+          object btnGravar: TBitBtn
+            Left = 310
+            Top = 8
+            Width = 75
+            Height = 25
+            Caption = 'Gravar'
+            TabOrder = 2
+            OnClick = btnGravarClick
+          end
+          object btnCancelar: TBitBtn
+            Left = 400
+            Top = 8
+            Width = 75
+            Height = 25
+            Caption = 'Cancelar'
+            TabOrder = 3
+            OnClick = btnCancelarClick
+          end
+        end
+      end
+      object tabDestino: TTabSheet
+        Caption = 'Destino'
+        Enabled = False
+        ImageIndex = 1
+        object Label10: TLabel
+          Left = 8
+          Top = 8
+          Width = 11
+          Height = 13
+          Caption = 'Nr'
+          FocusControl = edtNrSeq
+        end
+        object Label12: TLabel
+          Left = 8
+          Top = 48
+          Width = 33
+          Height = 13
+          Caption = 'Cidade'
+          FocusControl = edtCodCidadeDestino
+        end
+        object Label13: TLabel
+          Left = 56
+          Top = 8
+          Width = 54
+          Height = 13
+          Caption = 'Logradouro'
+          FocusControl = edtLogradouro
+        end
+        object Label14: TLabel
+          Left = 312
+          Top = 8
+          Width = 37
+          Height = 13
+          Caption = 'N'#250'mero'
+          FocusControl = edtNumero
+        end
+        object Label15: TLabel
+          Left = 392
+          Top = 8
+          Width = 27
+          Height = 13
+          Caption = 'Bairro'
+          FocusControl = edtBairro
+        end
+        object Label16: TLabel
+          Left = 408
+          Top = 48
+          Width = 21
+          Height = 13
+          Caption = 'CEP'
+          FocusControl = edtCep
+        end
+        object Label17: TLabel
+          Left = 8
+          Top = 88
+          Width = 58
+          Height = 13
+          Caption = 'Observa'#231#227'o'
+          FocusControl = edtObs
+        end
+        object edtNrSeq: TDBEdit
+          Left = 8
+          Top = 24
+          Width = 41
+          Height = 21
+          DataField = 'NR_SEQ'
+          DataSource = DSDESTINO
+          Enabled = False
+          TabOrder = 0
+        end
+        object edtCodCidadeDestino: TDBEdit
+          Left = 8
+          Top = 64
+          Width = 33
+          Height = 21
+          DataField = 'CD_CIDADE'
+          DataSource = DSDESTINO
+          TabOrder = 4
+          OnExit = edtCodCidadeDestinoExit
+        end
+        object edtLogradouro: TDBEdit
+          Left = 56
+          Top = 24
+          Width = 249
+          Height = 21
+          CharCase = ecUpperCase
+          DataField = 'DS_LOGRADOURO'
+          DataSource = DSDESTINO
+          TabOrder = 1
+        end
+        object edtNumero: TDBEdit
+          Left = 312
+          Top = 24
+          Width = 73
+          Height = 21
+          CharCase = ecUpperCase
+          DataField = 'DS_NUMERO'
+          DataSource = DSDESTINO
+          TabOrder = 2
+        end
+        object edtBairro: TDBEdit
+          Left = 392
+          Top = 24
+          Width = 200
+          Height = 21
+          CharCase = ecUpperCase
+          DataField = 'DS_BAIRRO'
+          DataSource = DSDESTINO
+          TabOrder = 3
+        end
+        object edtCep: TDBEdit
+          Left = 408
+          Top = 64
+          Width = 108
+          Height = 21
+          DataField = 'DS_CEP'
+          DataSource = DSDESTINO
+          TabOrder = 7
+        end
+        object edtObs: TDBEdit
+          Left = 8
+          Top = 104
+          Width = 585
+          Height = 21
+          CharCase = ecUpperCase
+          DataField = 'DS_OBSERVACAO'
+          DataSource = DSDESTINO
+          TabOrder = 8
+        end
+        object btnCidadeDestino: TBitBtn
+          Left = 48
+          Top = 64
+          Width = 33
+          Height = 21
+          Caption = '...'
+          TabOrder = 5
+          OnClick = btnCidadeDestinoClick
+        end
+        object edtCidadeDestino: TEdit
+          Left = 88
+          Top = 64
+          Width = 313
+          Height = 21
+          CharCase = ecUpperCase
+          Enabled = False
+          TabOrder = 6
+        end
+        object DBGrid1: TDBGrid
+          Left = 8
+          Top = 160
+          Width = 585
+          Height = 161
+          DataSource = DSGRID
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
+          TabOrder = 11
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -11
+          TitleFont.Name = 'MS Sans Serif'
+          TitleFont.Style = []
+        end
+        object btnAdicionar: TButton
+          Left = 440
+          Top = 128
+          Width = 75
+          Height = 25
+          Caption = 'Adicionar'
+          TabOrder = 9
+          OnClick = btnAdicionarClick
+        end
+        object btnRemover: TButton
+          Left = 520
+          Top = 128
+          Width = 75
+          Height = 25
+          Caption = 'Remover'
+          TabOrder = 10
+          OnClick = btnRemoverClick
+        end
+      end
+      object tabConsulta: TTabSheet
+        Caption = 'Consulta'
+        ImageIndex = 2
+        object Label11: TLabel
+          Left = 8
+          Top = 0
+          Width = 80
+          Height = 13
+          Caption = 'Tipo da Consulta'
+        end
+        object labelPesquisa: TLabel
+          Left = 128
+          Top = 0
+          Width = 85
+          Height = 13
+          Caption = 'Valor da Pesquisa'
+          Visible = False
+        end
+        object Label18: TLabel
+          Left = 8
+          Top = 176
+          Width = 41
+          Height = 13
+          Caption = 'Destinos'
+        end
+        object GridConsulta: TDBGrid
+          Left = 8
+          Top = 48
+          Width = 585
+          Height = 120
+          DataSource = DSGRIDFRETE
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
+          TabOrder = 0
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -11
+          TitleFont.Name = 'MS Sans Serif'
+          TitleFont.Style = []
+          OnCellClick = GridConsultaCellClick
+          OnDblClick = GridConsultaDblClick
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'CD_FRETE'
+              Title.Caption = 'COD'
+              Width = 33
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'DS_PLACA'
+              Title.Caption = 'PLACA'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'MOTORISTA'
+              Width = 71
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'DS_TIPO_CARGA'
+              Title.Caption = 'TIPO CARGA'
+              Width = 79
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'CLIENTE'
+              Width = 110
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'NM_CIDADE'
+              Title.Caption = 'CIDADE'
+              Width = 72
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'DS_END_DESTINO'
+              Title.Caption = 'ENDERECO'
+              Width = 126
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'VL_FRETE'
+              Title.Caption = 'VALOR'
+              Visible = True
+            end>
+        end
+        object DBGrid3: TDBGrid
+          Left = 8
+          Top = 192
+          Width = 585
+          Height = 120
+          DataSource = DSGRIDDESTINO
+          TabOrder = 1
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -11
+          TitleFont.Name = 'MS Sans Serif'
+          TitleFont.Style = []
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'NM_CIDADE'
+              Title.Caption = 'CIDADE'
+              Width = 98
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'DS_LOGRADOURO'
+              Title.Caption = 'LOGRADOURO'
+              Width = 197
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'DS_NUMERO'
+              Title.Caption = 'NUMERO'
+              Width = 84
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'DS_BAIRRO'
+              Title.Caption = 'BAIRRO'
+              Width = 120
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'DS_CEP'
+              Title.Caption = 'CEP'
+              Visible = True
+            end>
+        end
+        object cbTipoConsulta: TComboBox
+          Left = 8
+          Top = 16
+          Width = 113
+          Height = 21
+          ItemHeight = 13
+          ItemIndex = 0
+          TabOrder = 2
+          Text = 'Geral'
+          OnSelect = cbTipoConsultaSelect
+          Items.Strings = (
+            'Geral'
+            'C'#243'digo'
+            'Cliente')
+        end
+        object edtValorPesquisa: TEdit
+          Left = 128
+          Top = 16
+          Width = 273
+          Height = 21
+          CharCase = ecUpperCase
+          TabOrder = 3
+          Visible = False
+        end
+        object btnPesquisar: TBitBtn
+          Left = 408
+          Top = 16
+          Width = 75
+          Height = 21
+          Caption = 'Pesquisar'
+          TabOrder = 4
+          OnClick = btnPesquisarClick
+        end
+      end
+    end
+    object edtCod: TDBEdit
+      Left = 8
+      Top = 24
+      Width = 41
+      Height = 21
+      DataField = 'CD_FRETE'
+      DataSource = DSFrete
+      Enabled = False
+      TabOrder = 0
+      OnExit = edtCodExit
+    end
+    object edtDtTransacao: TDBEdit
+      Left = 56
+      Top = 24
+      Width = 89
+      Height = 21
+      DataField = 'DT_TRANSACAO'
+      DataSource = DSFrete
+      Enabled = False
+      TabOrder = 1
+    end
+  end
+  object DSFrete: TDataSource
+    DataSet = DM.MOV_FRETE
+    OnStateChange = DSFreteStateChange
+    Left = 232
+    Top = 16
+  end
+  object DSDESTINO: TDataSource
+    DataSet = DM.MOV_DESTINO_FRETE
+    Left = 264
+    Top = 16
+  end
+  object IBQGRID: TIBQuery
+    Database = DM.Conection
+    Transaction = DM.Transaction
+    BufferChunks = 1000
+    CachedUpdates = False
+    SQL.Strings = (
+      
+        'select NR_SEQ, CD_FRETE, DS_LOGRADOURO, DS_NUMERO, DS_BAIRRO fro' +
+        'm MOV_DESTINO_FRETE'
+      'where CD_FRETE = :PCDFRETE')
+    Left = 440
+    Top = 16
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'PCDFRETE'
+        ParamType = ptUnknown
+      end>
+    object IBQGRIDNR_SEQ: TIntegerField
+      DisplayWidth = 12
+      FieldName = 'NR_SEQ'
+      Origin = 'MOV_DESTINO_FRETE.NR_SEQ'
+      Required = True
+    end
+    object IBQGRIDCD_FRETE: TIntegerField
+      DisplayWidth = 12
+      FieldName = 'CD_FRETE'
+      Origin = 'MOV_DESTINO_FRETE.CD_FRETE'
+      Required = True
+    end
+    object IBQGRIDDS_LOGRADOURO: TIBStringField
+      DisplayWidth = 30
+      FieldName = 'DS_LOGRADOURO'
+      Origin = 'MOV_DESTINO_FRETE.DS_LOGRADOURO'
+      Size = 100
+    end
+    object IBQGRIDDS_NUMERO: TIBStringField
+      DisplayWidth = 24
+      FieldName = 'DS_NUMERO'
+      Origin = 'MOV_DESTINO_FRETE.DS_NUMERO'
+      Size = 30
+    end
+    object IBQGRIDDS_BAIRRO: TIBStringField
+      DisplayWidth = 24
+      FieldName = 'DS_BAIRRO'
+      Origin = 'MOV_DESTINO_FRETE.DS_BAIRRO'
+      Size = 60
+    end
+  end
+  object DSGRID: TDataSource
+    DataSet = IBQGRID
+    Left = 472
+    Top = 16
+  end
+  object IBQFRETE: TIBQuery
+    Database = DM.Conection
+    Transaction = DM.Transaction
+    BufferChunks = 1000
+    CachedUpdates = False
+    SQL.Strings = (
+      'SELECT FRETE.CD_FRETE, FRETE.CD_VEICULO, VEICULO.DS_PLACA,'
+      
+        'FRETE.CD_MOTORISTA, PESSOAMOT.NM_RZ_SOCIAL AS MOTORISTA, FRETE.C' +
+        'D_TIPO_CARGA, TPCARGA.DS_TIPO_CARGA,'
+      
+        'FRETE.CD_CLIENTE, PESSOACLI.NM_RZ_SOCIAL AS CLIENTE, FRETE.cd_ci' +
+        'dade_origem, CIDADE.NM_CIDADE,'
+      'FRETE.DS_END_DESTINO, FRETE.VL_FRETE, FRETE.DT_TRANSACAO'
+      'FROM MOV_FRETE FRETE'
+      
+        'INNER JOIN CAD_VEICULO VEICULO ON (VEICULO.CD_VEICULO = FRETE.CD' +
+        '_VEICULO)'
+      
+        'INNER JOIN CAD_MOTORISTA MOTORISTA ON (MOTORISTA.CD_MOTORISTA = ' +
+        'FRETE.CD_MOTORISTA)'
+      
+        'INNER JOIN CAD_TIPO_CARGA TPCARGA ON (TPCARGA.CD_TIPO_CARGA = FR' +
+        'ETE.CD_TIPO_CARGA)'
+      
+        'INNER JOIN CAD_CLIENTE CLIENTE ON (CLIENTE.CD_CLIENTE = FRETE.CD' +
+        '_CLIENTE)'
+      
+        'INNER JOIN CAD_CIDADE CIDADE ON (CIDADE.CD_CIDADE = FRETE.cd_cid' +
+        'ade_origem)'
+      
+        'INNER JOIN CAD_PESSOA PESSOAMOT ON (MOTORISTA.CD_PESSOA = PESSOA' +
+        'MOT.CD_PESSOA)'
+      
+        'INNER JOIN CAD_PESSOA PESSOACLI ON (CLIENTE.CD_PESSOA = PESSOACL' +
+        'I.CD_PESSOA)')
+    Left = 508
+    Top = 80
+    object IBQFRETECD_FRETE: TIntegerField
+      FieldName = 'CD_FRETE'
+      Origin = 'MOV_FRETE.CD_FRETE'
+      Required = True
+    end
+    object IBQFRETECD_VEICULO: TIntegerField
+      FieldName = 'CD_VEICULO'
+      Origin = 'MOV_FRETE.CD_VEICULO'
+      Required = True
+    end
+    object IBQFRETEDS_PLACA: TIBStringField
+      FieldName = 'DS_PLACA'
+      Origin = 'CAD_VEICULO.DS_PLACA'
+      Size = 8
+    end
+    object IBQFRETECD_MOTORISTA: TIntegerField
+      FieldName = 'CD_MOTORISTA'
+      Origin = 'MOV_FRETE.CD_MOTORISTA'
+      Required = True
+    end
+    object IBQFRETEMOTORISTA: TIBStringField
+      FieldName = 'MOTORISTA'
+      Origin = 'CAD_PESSOA.NM_RZ_SOCIAL'
+      Required = True
+      Size = 100
+    end
+    object IBQFRETECD_TIPO_CARGA: TIntegerField
+      FieldName = 'CD_TIPO_CARGA'
+      Origin = 'MOV_FRETE.CD_TIPO_CARGA'
+      Required = True
+    end
+    object IBQFRETEDS_TIPO_CARGA: TIBStringField
+      FieldName = 'DS_TIPO_CARGA'
+      Origin = 'CAD_TIPO_CARGA.DS_TIPO_CARGA'
+      Required = True
+      Size = 100
+    end
+    object IBQFRETECD_CLIENTE: TIntegerField
+      FieldName = 'CD_CLIENTE'
+      Origin = 'MOV_FRETE.CD_CLIENTE'
+      Required = True
+    end
+    object IBQFRETECLIENTE: TIBStringField
+      FieldName = 'CLIENTE'
+      Origin = 'CAD_PESSOA.NM_RZ_SOCIAL'
+      Required = True
+      Size = 100
+    end
+    object IBQFRETECD_CIDADE_ORIGEM: TIntegerField
+      FieldName = 'CD_CIDADE_ORIGEM'
+      Origin = 'MOV_FRETE.CD_CIDADE_ORIGEM'
+      Required = True
+    end
+    object IBQFRETENM_CIDADE: TIBStringField
+      FieldName = 'NM_CIDADE'
+      Origin = 'CAD_CIDADE.NM_CIDADE'
+      Size = 50
+    end
+    object IBQFRETEDS_END_DESTINO: TIBStringField
+      FieldName = 'DS_END_DESTINO'
+      Origin = 'MOV_FRETE.DS_END_DESTINO'
+      Size = 80
+    end
+    object IBQFRETEVL_FRETE: TFloatField
+      FieldName = 'VL_FRETE'
+      Origin = 'MOV_FRETE.VL_FRETE'
+    end
+    object IBQFRETEDT_TRANSACAO: TDateField
+      FieldName = 'DT_TRANSACAO'
+      Origin = 'MOV_FRETE.DT_TRANSACAO'
+    end
+  end
+  object DSGRIDFRETE: TDataSource
+    DataSet = IBQFRETE
+    Left = 540
+    Top = 80
+  end
+  object DSGRIDDESTINO: TDataSource
+    DataSet = IBQGRIDDESTINO
+    Left = 532
+    Top = 352
+  end
+  object IBQGRIDDESTINO: TIBQuery
+    Database = DM.Conection
+    Transaction = DM.Transaction
+    BufferChunks = 1000
+    CachedUpdates = False
+    SQL.Strings = (
+      
+        'SELECT DESTINO.nr_seq, DESTINO.cd_frete, DESTINO.cd_cidade, CIDA' +
+        'DE.nm_cidade, DESTINO.ds_logradouro,'
+      
+        ' DESTINO.ds_numero, DESTINO.ds_bairro, DESTINO.ds_cep, DESTINO.d' +
+        's_observacao, DESTINO.dt_transacao'
+      'from mov_destino_frete DESTINO'
+      
+        'inner join cad_cidade CIDADE ON (CIDADE.cd_cidade = DESTINO.cd_c' +
+        'idade)'
+      'where DESTINO.cd_frete = :PCDFRETE')
+    Left = 500
+    Top = 352
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'PCDFRETE'
+        ParamType = ptUnknown
+      end>
+    object IBQGRIDDESTINONR_SEQ: TIntegerField
+      FieldName = 'NR_SEQ'
+      Origin = 'MOV_DESTINO_FRETE.NR_SEQ'
+      Required = True
+    end
+    object IBQGRIDDESTINOCD_FRETE: TIntegerField
+      FieldName = 'CD_FRETE'
+      Origin = 'MOV_DESTINO_FRETE.CD_FRETE'
+      Required = True
+    end
+    object IBQGRIDDESTINOCD_CIDADE: TIntegerField
+      FieldName = 'CD_CIDADE'
+      Origin = 'MOV_DESTINO_FRETE.CD_CIDADE'
+    end
+    object IBQGRIDDESTINONM_CIDADE: TIBStringField
+      FieldName = 'NM_CIDADE'
+      Origin = 'CAD_CIDADE.NM_CIDADE'
+      Size = 50
+    end
+    object IBQGRIDDESTINODS_LOGRADOURO: TIBStringField
+      FieldName = 'DS_LOGRADOURO'
+      Origin = 'MOV_DESTINO_FRETE.DS_LOGRADOURO'
+      Size = 100
+    end
+    object IBQGRIDDESTINODS_NUMERO: TIBStringField
+      FieldName = 'DS_NUMERO'
+      Origin = 'MOV_DESTINO_FRETE.DS_NUMERO'
+      Size = 30
+    end
+    object IBQGRIDDESTINODS_BAIRRO: TIBStringField
+      FieldName = 'DS_BAIRRO'
+      Origin = 'MOV_DESTINO_FRETE.DS_BAIRRO'
+      Size = 60
+    end
+    object IBQGRIDDESTINODS_CEP: TIBStringField
+      FieldName = 'DS_CEP'
+      Origin = 'MOV_DESTINO_FRETE.DS_CEP'
+      Size = 8
+    end
+    object IBQGRIDDESTINODS_OBSERVACAO: TIBStringField
+      FieldName = 'DS_OBSERVACAO'
+      Origin = 'MOV_DESTINO_FRETE.DS_OBSERVACAO'
+      Size = 500
+    end
+    object IBQGRIDDESTINODT_TRANSACAO: TDateField
+      FieldName = 'DT_TRANSACAO'
+      Origin = 'MOV_DESTINO_FRETE.DT_TRANSACAO'
+    end
+  end
+end

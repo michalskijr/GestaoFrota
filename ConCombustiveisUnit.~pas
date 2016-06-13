@@ -172,5 +172,5 @@ begin
       FormCadCombustiveis.ShowModal;
     end;
 end;
-//em teste
+//Pronto!
 end.

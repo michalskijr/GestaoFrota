@@ -1,6 +1,6 @@
 object FormConsultaModelo: TFormConsultaModelo
-  Left = 470
-  Top = 275
+  Left = 471
+  Top = 350
   Width = 497
   Height = 334
   Caption = 'Consulta Modelo'

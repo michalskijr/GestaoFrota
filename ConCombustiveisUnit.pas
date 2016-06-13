@@ -7,7 +7,7 @@ uses
   Dialogs, Grids, DBGrids, StdCtrls, Buttons, DB;
 
 type
-  TFormConsultaCombustiveis = class(TForm)
+    TFormConsultaCombustiveis = class(TForm)
     Label6: TLabel;
     cbTipoConsulta: TComboBox;
     labelPesquisa: TLabel;

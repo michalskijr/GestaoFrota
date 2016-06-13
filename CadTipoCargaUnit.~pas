@@ -90,7 +90,7 @@ procedure TFormCadTipoCarga.CommitRegistro();
 begin
   DM.CAD_TIPO_CARGA.Post;
   DM.Transaction.CommitRetaining;
-  DM.CAD_TIPO_CARGA.Close;
+  DM.IBQCAD_TIPO_CARGA.Close;
 end;
 
 //Limpa os EditTex e LookupComboBox

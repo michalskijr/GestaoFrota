@@ -1,6 +1,6 @@
 object FormCadEndereco: TFormCadEndereco
-  Left = 357
-  Top = 137
+  Left = 447
+  Top = 314
   Width = 464
   Height = 223
   Caption = 'Cadastro de Endere'#231'o'
@@ -183,22 +183,23 @@ object FormCadEndereco: TFormCadEndereco
       TabOrder = 7
     end
     object PanelBotoes: TPanel
-      Left = 0
-      Top = 144
-      Width = 449
+      Left = 280
+      Top = 136
+      Width = 169
       Height = 41
       Color = clBtnHighlight
       TabOrder = 8
       object btnGravar: TBitBtn
-        Left = 278
+        Left = 6
         Top = 8
         Width = 75
         Height = 25
         Caption = 'Gravar'
         TabOrder = 0
+        OnClick = btnGravarClick
       end
       object btnCancelar: TBitBtn
-        Left = 368
+        Left = 88
         Top = 8
         Width = 75
         Height = 25

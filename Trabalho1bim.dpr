@@ -26,7 +26,12 @@ uses
   CadClienteUnit in 'CadClienteUnit.pas' {FormCadCliente},
   CadEnderecoUnit in 'CadEnderecoUnit.pas' {FormCadEndereco},
   CadContatoUnit in 'CadContatoUnit.pas' {FormCadContato},
-  CadMotoristaUnit in 'CadMotoristaUnit.pas' {FormCadMotorista};
+  CadMotoristaUnit in 'CadMotoristaUnit.pas' {FormCadMotorista},
+  NF in 'NF.pas' {Form1},
+  MovFreteUnit in 'MovFreteUnit.pas' {FormMovFrete},
+  ConClienteUnit in 'ConClienteUnit.pas' {FormConsultaCliente},
+  ConTpCargaUnit in 'ConTpCargaUnit.pas' {FormConsultaTpCarga},
+  ConMotoristaUnit in 'ConMotoristaUnit.pas' {FormConsultaMotorista};
 
 {$R *.res}
 
@@ -57,5 +62,10 @@ begin
   Application.CreateForm(TFormCadEndereco, FormCadEndereco);
   Application.CreateForm(TFormCadContato, FormCadContato);
   Application.CreateForm(TFormCadMotorista, FormCadMotorista);
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TFormMovFrete, FormMovFrete);
+  Application.CreateForm(TFormConsultaCliente, FormConsultaCliente);
+  Application.CreateForm(TFormConsultaTpCarga, FormConsultaTpCarga);
+  Application.CreateForm(TFormConsultaMotorista, FormConsultaMotorista);
   Application.Run;
 end.

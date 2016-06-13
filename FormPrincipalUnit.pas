@@ -33,6 +33,8 @@ type
     Veculo1: TMenuItem;
     ipoCarga1: TMenuItem;
     Cliente1: TMenuItem;
+    Motorista1: TMenuItem;
+    Frete1: TMenuItem;
     procedure Pas1Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Estado1Click(Sender: TObject);
@@ -53,6 +55,8 @@ type
     procedure Veculo1Click(Sender: TObject);
     procedure ipoCarga1Click(Sender: TObject);
     procedure Cliente1Click(Sender: TObject);
+    procedure Motorista1Click(Sender: TObject);
+    procedure Frete1Click(Sender: TObject);
     
   private
     { Private declarations }
@@ -69,7 +73,8 @@ uses CadPaisUnit, CadEstadoUnit, CadCidadeUnit, CadMarcaUnit, ConPaisUnit,
   ConEstadoUnit, ConCidadeUnit, ConMarcaUnit, CadModeloUnit, ConModeloUnit,
   CadTipoVeiculoUnit, ConTipoVeiculoUnit, CadCorUnit, ConCorUnit,
   CadCombustiveisUnit, ConCombustiveisUnit, CadVeiculoUnit,
-  CadTipoCargaUnit, CadClienteUnit;
+  CadTipoCargaUnit, CadClienteUnit, CadContatoUnit, CadMotoristaUnit,
+  MovFreteUnit;
 
 {$R *.dfm}
 
@@ -172,6 +177,16 @@ end;
 procedure TFormPrincipal.Cliente1Click(Sender: TObject);
 begin
   FormCadCliente.ShowModal;
+end;
+
+procedure TFormPrincipal.Motorista1Click(Sender: TObject);
+begin
+  FormCadMotorista.ShowModal;
+end;
+
+procedure TFormPrincipal.Frete1Click(Sender: TObject);
+begin
+  FormMovFrete.ShowModal;
 end;
 
 end.

@@ -63,6 +63,14 @@ object FormPrincipal: TFormPrincipal
         Caption = 'Tipo Carga'
         OnClick = ipoCarga1Click
       end
+      object Cliente1: TMenuItem
+        Caption = 'Cliente'
+        OnClick = Cliente1Click
+      end
+      object Motorista1: TMenuItem
+        Caption = 'Motorista'
+        OnClick = Motorista1Click
+      end
     end
     object Consulta1: TMenuItem
       Caption = 'C&onsulta'

@@ -81,6 +81,11 @@ begin
   IBQESTADO.Last;
   IBQESTADO.First;
 
+  DM.CAD_ENDERECO.Append;
+  DM.CAD_ENDERECONR_SEQ.AsInteger := 0;
+  DM.CAD_ENDERECODT_TRANSACAO.AsDateTime := Date;
+  DM.CAD_ENDERECOCD_PESSOA.AsInteger := DM.CAD_PESSOACD_PESSOA.AsInteger;
+
 end;
 
 //Ao selecionar um Estado é preenchido a combo de Cidade
@@ -176,15 +181,17 @@ begin
         end;
       CommitRegistro;
       ShowMessage('Registro gravado com sucesso!');
+      FormCadEndereco.ModalResult := 1;
+      FormCadEndereco.Close;
     end
-  //executa quando for alterãção no registro
+  //executa quando for alteração no registro
   else
     begin
       DM.CAD_ENDERECO.Edit;
       CommitRegistro;
       ShowMessage('Registro alterado com sucesso!');
     end;
-  LimparCampos;
+  //LimparCampos;
 end;
 
 //Cancelar transação

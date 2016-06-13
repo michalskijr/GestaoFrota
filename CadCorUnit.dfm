@@ -1,6 +1,6 @@
 object FormCadCor: TFormCadCor
-  Left = 864
-  Top = 214
+  Left = 634
+  Top = 219
   Width = 464
   Height = 221
   Caption = 'Cadastro de Cor'

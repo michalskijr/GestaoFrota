@@ -1,9 +1,9 @@
 object DM: TDM
   OldCreateOrder = False
-  Left = 310
-  Top = 114
+  Left = 322
+  Top = 118
   Height = 596
-  Width = 697
+  Width = 808
   object Conection: TIBDatabase
     Connected = True
     DatabaseName = 
@@ -798,7 +798,7 @@ object DM: TDM
       '  CD_VEICULO = :OLD_CD_VEICULO')
     Active = True
     Left = 229
-    Top = 16
+    Top = 8
     object CAD_VEICULOCD_VEICULO: TIntegerField
       FieldName = 'CD_VEICULO'
       Origin = 'CAD_VEICULO.CD_VEICULO'
@@ -1042,7 +1042,7 @@ object DM: TDM
       '  CD_TIPO_CARGA = :OLD_CD_TIPO_CARGA')
     Active = True
     Left = 234
-    Top = 80
+    Top = 72
     object CAD_TIPO_CARGACD_TIPO_CARGA: TIntegerField
       FieldName = 'CD_TIPO_CARGA'
       Origin = 'CAD_TIPO_CARGA.CD_TIPO_CARGA'
@@ -1098,9 +1098,9 @@ object DM: TDM
       '  CD_PESSOA = :OLD_CD_PESSOA')
     InsertSQL.Strings = (
       'insert into CAD_PESSOA'
-      '  (NM_RZ_SOCIAL, TP_PESSOA, DT_TRANSACAO)'
+      '  (CD_PESSOA, NM_RZ_SOCIAL, TP_PESSOA, DT_TRANSACAO)'
       'values'
-      '  (:NM_RZ_SOCIAL, :TP_PESSOA, :DT_TRANSACAO)')
+      '  (:CD_PESSOA, :NM_RZ_SOCIAL, :TP_PESSOA, :DT_TRANSACAO)')
     RefreshSQL.Strings = (
       'Select '
       '  CD_PESSOA,'
@@ -1219,12 +1219,12 @@ object DM: TDM
     DeleteSQL.Strings = (
       'delete from CAD_JURIDICA'
       'where'
-      '  NR_CNPJ = :OLD_NR_CNPJ')
+      '  CD_PESSOA = :OLD_CD_PESSOA')
     InsertSQL.Strings = (
       'insert into CAD_JURIDICA'
-      '  (CD_PESSOA, NR_CNPJ, NR_INSC_EST, NM_FANTASIA)'
+      '  (NR_CNPJ, NR_INSC_EST, NM_FANTASIA)'
       'values'
-      '  (:CD_PESSOA, :NR_CNPJ, :NR_INSC_EST, :NM_FANTASIA)')
+      '  (:NR_CNPJ, :NR_INSC_EST, :NM_FANTASIA)')
     RefreshSQL.Strings = (
       'Select '
       '  NR_CNPJ,'
@@ -1233,18 +1233,17 @@ object DM: TDM
       '  NM_FANTASIA'
       'from CAD_JURIDICA '
       'where'
-      '  NR_CNPJ = :NR_CNPJ')
+      '  CD_PESSOA = :CD_PESSOA')
     SelectSQL.Strings = (
-      
-        'select * from CAD_JURIDICA where CD_PESSOA = :PCDPESSOA and NR_C' +
-        'NPJ = :PCDCNPJ')
+      'select * from CAD_JURIDICA where CD_PESSOA = :PCDPESSOA')
     ModifySQL.Strings = (
       'update CAD_JURIDICA'
       'set'
+      '  NR_CNPJ = :NR_CNPJ,'
       '  NR_INSC_EST = :NR_INSC_EST,'
       '  NM_FANTASIA = :NM_FANTASIA'
       'where'
-      '  NR_CNPJ = :OLD_NR_CNPJ')
+      '  CD_PESSOA = :OLD_CD_PESSOA')
     Active = True
     Left = 232
     Top = 256
@@ -1293,14 +1292,13 @@ object DM: TDM
       'where'
       '  CD_PESSOA = :CD_PESSOA')
     SelectSQL.Strings = (
-      'select * from CAD_CLIENTE where CD_CLIENTE = :PCDCLIENTE')
+      'select * from CAD_CLIENTE where CD_PESSOA = :PCDPESSOA')
     ModifySQL.Strings = (
       'update CAD_CLIENTE'
       'set'
-      '  CD_PESSOA = :CD_PESSOA,'
       '  DT_TRANSACAO = :DT_TRANSACAO'
       'where'
-      '  CD_CLIENTE = :OLD_CD_CLIENTE')
+      '  CD_PESSOA = :OLD_CD_PESSOA')
     Active = True
     Left = 232
     Top = 320
@@ -1328,7 +1326,7 @@ object DM: TDM
     DeleteSQL.Strings = (
       'delete from CAD_MOTORISTA'
       'where'
-      '  CD_MOTORISTA = :OLD_CD_MOTORISTA')
+      '  CD_PESSOA = :OLD_CD_PESSOA')
     InsertSQL.Strings = (
       'insert into CAD_MOTORISTA'
       '  (CD_PESSOA, NR_CNH, DS_CATEG_CNH, DT_TRANSACAO)'
@@ -1343,21 +1341,46 @@ object DM: TDM
       '  DT_TRANSACAO'
       'from CAD_MOTORISTA '
       'where'
-      '  CD_MOTORISTA = :CD_MOTORISTA')
+      '  CD_PESSOA = :CD_PESSOA')
     SelectSQL.Strings = (
-      'select * from CAD_MOTORISTA where CD_MOTORISTA = :PCDMOTORISTA')
+      'select * from CAD_MOTORISTA where CD_PESSOA = :PCDPESSOA')
     ModifySQL.Strings = (
       'update CAD_MOTORISTA'
       'set'
-      '  CD_PESSOA = :CD_PESSOA,'
       '  NR_CNH = :NR_CNH,'
       '  DS_CATEG_CNH = :DS_CATEG_CNH,'
       '  DT_TRANSACAO = :DT_TRANSACAO'
       'where'
-      '  CD_MOTORISTA = :OLD_CD_MOTORISTA')
+      '  CD_PESSOA = :OLD_CD_PESSOA')
     Active = True
     Left = 232
     Top = 376
+    object CAD_MOTORISTACD_MOTORISTA: TIntegerField
+      FieldName = 'CD_MOTORISTA'
+      Origin = 'CAD_MOTORISTA.CD_MOTORISTA'
+      Required = True
+    end
+    object CAD_MOTORISTACD_PESSOA: TIntegerField
+      FieldName = 'CD_PESSOA'
+      Origin = 'CAD_MOTORISTA.CD_PESSOA'
+      Required = True
+    end
+    object CAD_MOTORISTANR_CNH: TIBStringField
+      FieldName = 'NR_CNH'
+      Origin = 'CAD_MOTORISTA.NR_CNH'
+      Required = True
+    end
+    object CAD_MOTORISTADS_CATEG_CNH: TIBStringField
+      FieldName = 'DS_CATEG_CNH'
+      Origin = 'CAD_MOTORISTA.DS_CATEG_CNH'
+      FixedChar = True
+      Size = 2
+    end
+    object CAD_MOTORISTADT_TRANSACAO: TDateField
+      FieldName = 'DT_TRANSACAO'
+      Origin = 'CAD_MOTORISTA.DT_TRANSACAO'
+      Required = True
+    end
   end
   object IBQCAD_ENDERECO: TIBQuery
     Database = Conection
@@ -1438,8 +1461,8 @@ object DM: TDM
     DeleteSQL.Strings = (
       'delete from CAD_CONTATO'
       'where'
-      '  NR_SEQ = :OLD_NR_SEQ and'
-      '  CD_PESSOA = :OLD_CD_PESSOA')
+      '  CD_PESSOA = :OLD_CD_PESSOA and'
+      '  NR_SEQ = :OLD_NR_SEQ')
     InsertSQL.Strings = (
       'insert into CAD_CONTATO'
       '  (CD_PESSOA, NM_CONTATO, NR_TELEFONE, DS_EMAIL)'
@@ -1534,9 +1557,7 @@ object DM: TDM
       '  CD_PESSOA = :CD_PESSOA and'
       '  NR_SEQ = :NR_SEQ')
     SelectSQL.Strings = (
-      
-        'select * from CAD_ENDERECO where CD_PESSOA = :PCDPESSOA and NR_S' +
-        'EQ = :PCDSEQ')
+      'select * from CAD_ENDERECO where CD_PESSOA = :PCDPESSOA')
     ModifySQL.Strings = (
       'update CAD_ENDERECO'
       'set'
@@ -1606,6 +1627,387 @@ object DM: TDM
     Top = 8
     object IBQCD_PESSOACD_PESSOA: TLargeintField
       FieldName = 'CD_PESSOA'
+    end
+  end
+  object IBQCAD_CONTATO: TIBQuery
+    Database = Conection
+    Transaction = Transaction
+    Active = True
+    BufferChunks = 1000
+    CachedUpdates = False
+    SQL.Strings = (
+      'select * from CAD_CONTATO where cd_pessoa = :PCDPESSOA')
+    Left = 464
+    Top = 496
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'PCDPESSOA'
+        ParamType = ptUnknown
+      end>
+    object IBQCAD_CONTATONR_SEQ: TIntegerField
+      FieldName = 'NR_SEQ'
+      Origin = 'CAD_CONTATO.NR_SEQ'
+      Required = True
+    end
+    object IBQCAD_CONTATOCD_PESSOA: TIntegerField
+      FieldName = 'CD_PESSOA'
+      Origin = 'CAD_CONTATO.CD_PESSOA'
+      Required = True
+    end
+    object IBQCAD_CONTATONM_CONTATO: TIBStringField
+      FieldName = 'NM_CONTATO'
+      Origin = 'CAD_CONTATO.NM_CONTATO'
+      Required = True
+      Size = 60
+    end
+    object IBQCAD_CONTATONR_TELEFONE: TIBStringField
+      FieldName = 'NR_TELEFONE'
+      Origin = 'CAD_CONTATO.NR_TELEFONE'
+      Size = 12
+    end
+    object IBQCAD_CONTATODS_EMAIL: TIBStringField
+      FieldName = 'DS_EMAIL'
+      Origin = 'CAD_CONTATO.DS_EMAIL'
+      Size = 30
+    end
+  end
+  object MOV_FRETE: TIBDataSet
+    Database = Conection
+    Transaction = Transaction
+    BufferChunks = 1000
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'delete from MOV_FRETE'
+      'where'
+      '  CD_FRETE = :OLD_CD_FRETE')
+    InsertSQL.Strings = (
+      'insert into MOV_FRETE'
+      '  (CD_VEICULO, CD_MOTORISTA, CD_TIPO_CARGA, CD_CLIENTE, '
+      'CD_CIDADE_ORIGEM, '
+      '   DS_END_DESTINO, VL_FRETE, DT_TRANSACAO)'
+      'values'
+      '  (:CD_VEICULO, :CD_MOTORISTA, :CD_TIPO_CARGA, :CD_CLIENTE, '
+      ':CD_CIDADE_ORIGEM, '
+      '   :DS_END_DESTINO, :VL_FRETE, :DT_TRANSACAO)')
+    RefreshSQL.Strings = (
+      'Select '
+      '  CD_FRETE,'
+      '  CD_VEICULO,'
+      '  CD_MOTORISTA,'
+      '  CD_TIPO_CARGA,'
+      '  CD_CLIENTE,'
+      '  CD_CIDADE_ORIGEM,'
+      '  DS_END_DESTINO,'
+      '  VL_FRETE,'
+      '  DT_TRANSACAO'
+      'from MOV_FRETE '
+      'where'
+      '  CD_FRETE = :CD_FRETE')
+    SelectSQL.Strings = (
+      'select * from MOV_FRETE where CD_FRETE = :PCDFRETE')
+    ModifySQL.Strings = (
+      'update MOV_FRETE'
+      'set'
+      '  CD_VEICULO = :CD_VEICULO,'
+      '  CD_MOTORISTA = :CD_MOTORISTA,'
+      '  CD_TIPO_CARGA = :CD_TIPO_CARGA,'
+      '  CD_CLIENTE = :CD_CLIENTE,'
+      '  CD_CIDADE_ORIGEM = :CD_CIDADE_ORIGEM,'
+      '  DS_END_DESTINO = :DS_END_DESTINO,'
+      '  VL_FRETE = :VL_FRETE,'
+      '  DT_TRANSACAO = :DT_TRANSACAO'
+      'where'
+      '  CD_FRETE = :OLD_CD_FRETE')
+    Active = True
+    Left = 568
+    Top = 168
+    object MOV_FRETECD_FRETE: TIntegerField
+      FieldName = 'CD_FRETE'
+      Origin = 'MOV_FRETE.CD_FRETE'
+      Required = True
+    end
+    object MOV_FRETECD_VEICULO: TIntegerField
+      FieldName = 'CD_VEICULO'
+      Origin = 'MOV_FRETE.CD_VEICULO'
+      Required = True
+    end
+    object MOV_FRETECD_MOTORISTA: TIntegerField
+      FieldName = 'CD_MOTORISTA'
+      Origin = 'MOV_FRETE.CD_MOTORISTA'
+      Required = True
+    end
+    object MOV_FRETECD_TIPO_CARGA: TIntegerField
+      FieldName = 'CD_TIPO_CARGA'
+      Origin = 'MOV_FRETE.CD_TIPO_CARGA'
+      Required = True
+    end
+    object MOV_FRETECD_CLIENTE: TIntegerField
+      FieldName = 'CD_CLIENTE'
+      Origin = 'MOV_FRETE.CD_CLIENTE'
+      Required = True
+    end
+    object MOV_FRETECD_CIDADE_ORIGEM: TIntegerField
+      FieldName = 'CD_CIDADE_ORIGEM'
+      Origin = 'MOV_FRETE.CD_CIDADE_ORIGEM'
+      Required = True
+    end
+    object MOV_FRETEDS_END_DESTINO: TIBStringField
+      FieldName = 'DS_END_DESTINO'
+      Origin = 'MOV_FRETE.DS_END_DESTINO'
+      Size = 80
+    end
+    object MOV_FRETEVL_FRETE: TFloatField
+      FieldName = 'VL_FRETE'
+      Origin = 'MOV_FRETE.VL_FRETE'
+    end
+    object MOV_FRETEDT_TRANSACAO: TDateField
+      FieldName = 'DT_TRANSACAO'
+      Origin = 'MOV_FRETE.DT_TRANSACAO'
+    end
+  end
+  object MOV_DESTINO_FRETE: TIBDataSet
+    Database = Conection
+    Transaction = Transaction
+    BufferChunks = 1000
+    CachedUpdates = False
+    DeleteSQL.Strings = (
+      'delete from MOV_DESTINO_FRETE'
+      'where'
+      '  NR_SEQ = :OLD_NR_SEQ and'
+      '  CD_FRETE = :OLD_CD_FRETE')
+    InsertSQL.Strings = (
+      'insert into MOV_DESTINO_FRETE'
+      '  (CD_FRETE, CD_CIDADE, DS_LOGRADOURO, DS_NUMERO, DS_BAIRRO, '
+      'DS_CEP, DS_OBSERVACAO, '
+      '   DT_TRANSACAO)'
+      'values'
+      
+        '  (:CD_FRETE, :CD_CIDADE, :DS_LOGRADOURO, :DS_NUMERO, :DS_BAIRRO' +
+        ', '
+      ':DS_CEP, :DS_OBSERVACAO, '
+      '   :DT_TRANSACAO)')
+    RefreshSQL.Strings = (
+      'Select '
+      '  NR_SEQ,'
+      '  CD_FRETE,'
+      '  CD_CIDADE,'
+      '  DS_LOGRADOURO,'
+      '  DS_NUMERO,'
+      '  DS_BAIRRO,'
+      '  DS_CEP,'
+      '  DS_OBSERVACAO,'
+      '  DT_TRANSACAO'
+      'from MOV_DESTINO_FRETE '
+      'where'
+      '  NR_SEQ = :NR_SEQ and'
+      '  CD_FRETE = :CD_FRETE')
+    SelectSQL.Strings = (
+      'select * from MOV_DESTINO_FRETE where CD_FRETE = :PCDFRETE')
+    ModifySQL.Strings = (
+      'update MOV_DESTINO_FRETE'
+      'set'
+      '  CD_CIDADE = :CD_CIDADE,'
+      '  DS_LOGRADOURO = :DS_LOGRADOURO,'
+      '  DS_NUMERO = :DS_NUMERO,'
+      '  DS_BAIRRO = :DS_BAIRRO,'
+      '  DS_CEP = :DS_CEP,'
+      '  DS_OBSERVACAO = :DS_OBSERVACAO,'
+      '  DT_TRANSACAO = :DT_TRANSACAO'
+      'where'
+      '  NR_SEQ = :OLD_NR_SEQ and'
+      '  CD_FRETE = :OLD_CD_FRETE')
+    Active = True
+    Left = 696
+    Top = 168
+    object MOV_DESTINO_FRETENR_SEQ: TIntegerField
+      FieldName = 'NR_SEQ'
+      Origin = 'MOV_DESTINO_FRETE.NR_SEQ'
+      Required = True
+    end
+    object MOV_DESTINO_FRETECD_FRETE: TIntegerField
+      FieldName = 'CD_FRETE'
+      Origin = 'MOV_DESTINO_FRETE.CD_FRETE'
+      Required = True
+    end
+    object MOV_DESTINO_FRETECD_CIDADE: TIntegerField
+      FieldName = 'CD_CIDADE'
+      Origin = 'MOV_DESTINO_FRETE.CD_CIDADE'
+    end
+    object MOV_DESTINO_FRETEDS_LOGRADOURO: TIBStringField
+      FieldName = 'DS_LOGRADOURO'
+      Origin = 'MOV_DESTINO_FRETE.DS_LOGRADOURO'
+      Size = 100
+    end
+    object MOV_DESTINO_FRETEDS_NUMERO: TIBStringField
+      FieldName = 'DS_NUMERO'
+      Origin = 'MOV_DESTINO_FRETE.DS_NUMERO'
+      Size = 30
+    end
+    object MOV_DESTINO_FRETEDS_BAIRRO: TIBStringField
+      FieldName = 'DS_BAIRRO'
+      Origin = 'MOV_DESTINO_FRETE.DS_BAIRRO'
+      Size = 60
+    end
+    object MOV_DESTINO_FRETEDS_CEP: TIBStringField
+      FieldName = 'DS_CEP'
+      Origin = 'MOV_DESTINO_FRETE.DS_CEP'
+      Size = 8
+    end
+    object MOV_DESTINO_FRETEDS_OBSERVACAO: TIBStringField
+      FieldName = 'DS_OBSERVACAO'
+      Origin = 'MOV_DESTINO_FRETE.DS_OBSERVACAO'
+      Size = 500
+    end
+    object MOV_DESTINO_FRETEDT_TRANSACAO: TDateField
+      FieldName = 'DT_TRANSACAO'
+      Origin = 'MOV_DESTINO_FRETE.DT_TRANSACAO'
+    end
+  end
+  object IBQMOV_DESTINO_FRETE: TIBQuery
+    Database = Conection
+    Transaction = Transaction
+    Active = True
+    BufferChunks = 1000
+    CachedUpdates = False
+    SQL.Strings = (
+      
+        'SELECT DESTINO.nr_seq, DESTINO.cd_frete, DESTINO.cd_cidade, CIDA' +
+        'DE.nm_cidade, DESTINO.ds_logradouro,'
+      
+        ' DESTINO.ds_numero, DESTINO.ds_bairro, DESTINO.ds_cep, DESTINO.d' +
+        's_observacao, DESTINO.dt_transacao'
+      'from mov_destino_frete DESTINO'
+      
+        'inner join cad_cidade CIDADE ON (CIDADE.cd_cidade = DESTINO.cd_c' +
+        'idade)'
+      'where DESTINO.cd_frete = :PCDFRETE')
+    Left = 696
+    Top = 232
+    ParamData = <
+      item
+        DataType = ftUnknown
+        Name = 'PCDFRETE'
+        ParamType = ptUnknown
+      end>
+    object IBQMOV_DESTINO_FRETENR_SEQ: TIntegerField
+      FieldName = 'NR_SEQ'
+      Origin = 'MOV_DESTINO_FRETE.NR_SEQ'
+      Required = True
+    end
+    object IBQMOV_DESTINO_FRETECD_FRETE: TIntegerField
+      FieldName = 'CD_FRETE'
+      Origin = 'MOV_DESTINO_FRETE.CD_FRETE'
+      Required = True
+    end
+    object IBQMOV_DESTINO_FRETECD_CIDADE: TIntegerField
+      FieldName = 'CD_CIDADE'
+      Origin = 'MOV_DESTINO_FRETE.CD_CIDADE'
+    end
+    object IBQMOV_DESTINO_FRETENM_CIDADE: TIBStringField
+      FieldName = 'NM_CIDADE'
+      Origin = 'CAD_CIDADE.NM_CIDADE'
+      Size = 50
+    end
+    object IBQMOV_DESTINO_FRETEDS_LOGRADOURO: TIBStringField
+      FieldName = 'DS_LOGRADOURO'
+      Origin = 'MOV_DESTINO_FRETE.DS_LOGRADOURO'
+      Size = 100
+    end
+    object IBQMOV_DESTINO_FRETEDS_NUMERO: TIBStringField
+      FieldName = 'DS_NUMERO'
+      Origin = 'MOV_DESTINO_FRETE.DS_NUMERO'
+      Size = 30
+    end
+    object IBQMOV_DESTINO_FRETEDS_BAIRRO: TIBStringField
+      FieldName = 'DS_BAIRRO'
+      Origin = 'MOV_DESTINO_FRETE.DS_BAIRRO'
+      Size = 60
+    end
+    object IBQMOV_DESTINO_FRETEDS_CEP: TIBStringField
+      FieldName = 'DS_CEP'
+      Origin = 'MOV_DESTINO_FRETE.DS_CEP'
+      Size = 8
+    end
+    object IBQMOV_DESTINO_FRETEDS_OBSERVACAO: TIBStringField
+      FieldName = 'DS_OBSERVACAO'
+      Origin = 'MOV_DESTINO_FRETE.DS_OBSERVACAO'
+      Size = 500
+    end
+    object IBQMOV_DESTINO_FRETEDT_TRANSACAO: TDateField
+      FieldName = 'DT_TRANSACAO'
+      Origin = 'MOV_DESTINO_FRETE.DT_TRANSACAO'
+    end
+  end
+  object IBQCAD_CLIENTE: TIBQuery
+    Database = Conection
+    Transaction = Transaction
+    Active = True
+    BufferChunks = 1000
+    CachedUpdates = False
+    SQL.Strings = (
+      
+        'select CLIENTE.CD_CLIENTE, PESSOA.NM_RZ_SOCIAL, CLIENTE.CD_PESSO' +
+        'A, CLIENTE.DT_TRANSACAO  '
+      'from CAD_CLIENTE CLIENTE'
+      
+        'INNER JOIN CAD_PESSOA PESSOA ON (PESSOA.CD_PESSOA = CLIENTE.CD_P' +
+        'ESSOA)')
+    Left = 464
+    Top = 312
+    object IBQCAD_CLIENTECD_CLIENTE: TIntegerField
+      FieldName = 'CD_CLIENTE'
+      Origin = 'CAD_CLIENTE.CD_CLIENTE'
+      Required = True
+    end
+    object IBQCAD_CLIENTECD_PESSOA: TIntegerField
+      FieldName = 'CD_PESSOA'
+      Origin = 'CAD_CLIENTE.CD_PESSOA'
+      Required = True
+    end
+    object IBQCAD_CLIENTEDT_TRANSACAO: TDateField
+      FieldName = 'DT_TRANSACAO'
+      Origin = 'CAD_CLIENTE.DT_TRANSACAO'
+      Required = True
+    end
+    object IBQCAD_CLIENTENM_RZ_SOCIAL: TIBStringField
+      FieldName = 'NM_RZ_SOCIAL'
+      Origin = 'CAD_PESSOA.NM_RZ_SOCIAL'
+      Required = True
+      Size = 100
+    end
+  end
+  object IBQCAD_MOTORISTA: TIBQuery
+    Database = Conection
+    Transaction = Transaction
+    Active = True
+    BufferChunks = 1000
+    CachedUpdates = False
+    SQL.Strings = (
+      
+        'select MOTORISTA.CD_MOTORISTA, PESSOA.NM_RZ_SOCIAL, MOTORISTA.CD' +
+        '_PESSOA  '
+      'from CAD_MOTORISTA MOTORISTA'
+      
+        'INNER JOIN CAD_PESSOA PESSOA ON (PESSOA.CD_PESSOA = MOTORISTA.CD' +
+        '_PESSOA)')
+    Left = 464
+    Top = 376
+    object IBQCAD_MOTORISTACD_MOTORISTA: TIntegerField
+      FieldName = 'CD_MOTORISTA'
+      Origin = 'CAD_MOTORISTA.CD_MOTORISTA'
+      Required = True
+    end
+    object IBQCAD_MOTORISTANM_RZ_SOCIAL: TIBStringField
+      FieldName = 'NM_RZ_SOCIAL'
+      Origin = 'CAD_PESSOA.NM_RZ_SOCIAL'
+      Required = True
+      Size = 100
+    end
+    object IBQCAD_MOTORISTACD_PESSOA: TIntegerField
+      FieldName = 'CD_PESSOA'
+      Origin = 'CAD_MOTORISTA.CD_PESSOA'
+      Required = True
     end
   end
 end

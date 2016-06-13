@@ -1,8 +1,8 @@
 object FormCadCliente: TFormCadCliente
-  Left = 362
-  Top = 129
-  Width = 808
-  Height = 430
+  Left = 199
+  Top = 122
+  Width = 792
+  Height = 352
   Caption = 'Cadastro de Cliente'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -17,8 +17,8 @@ object FormCadCliente: TFormCadCliente
   object Panel: TPanel
     Left = 0
     Top = 0
-    Width = 793
-    Height = 393
+    Width = 777
+    Height = 321
     TabOrder = 0
     object Label1: TLabel
       Left = 16
@@ -53,6 +53,7 @@ object FormCadCliente: TFormCadCliente
       DataSource = DataSourcePessoa
       Enabled = False
       TabOrder = 0
+      OnExit = edtCodExit
     end
     object edtDescricao: TDBEdit
       Left = 112
@@ -109,58 +110,15 @@ object FormCadCliente: TFormCadCliente
       Height = 21
       Caption = '...'
       TabOrder = 6
-    end
-    object PanelBotoes: TPanel
-      Left = 32
-      Top = 336
-      Width = 633
-      Height = 41
-      Color = clBtnHighlight
-      TabOrder = 7
-      object btnNovo: TBitBtn
-        Left = 8
-        Top = 8
-        Width = 75
-        Height = 25
-        Caption = 'Novo'
-        TabOrder = 0
-        OnClick = btnNovoClick
-      end
-      object btnExcluir: TBitBtn
-        Left = 364
-        Top = 8
-        Width = 75
-        Height = 25
-        Caption = 'Excluir'
-        TabOrder = 1
-        OnClick = btnExcluirClick
-      end
-      object btnGravar: TBitBtn
-        Left = 454
-        Top = 8
-        Width = 75
-        Height = 25
-        Caption = 'Gravar'
-        TabOrder = 2
-        OnClick = btnGravarClick
-      end
-      object btnCancelar: TBitBtn
-        Left = 544
-        Top = 8
-        Width = 75
-        Height = 25
-        Caption = 'Cancelar'
-        TabOrder = 3
-        OnClick = btnCancelarClick
-      end
+      OnClick = BitBtnConsultaClick
     end
     object PageControl: TPageControl
       Left = 16
       Top = 104
-      Width = 761
+      Width = 753
       Height = 217
       ActivePage = TabDados
-      TabOrder = 8
+      TabOrder = 7
       object TabDados: TTabSheet
         Caption = 'Dados'
         ImageIndex = 2
@@ -218,6 +176,7 @@ object FormCadCliente: TFormCadCliente
           Top = 64
           Width = 441
           Height = 21
+          CharCase = ecUpperCase
           DataField = 'NM_FANTASIA'
           DataSource = DataSourceJuridica
           TabOrder = 2
@@ -258,16 +217,60 @@ object FormCadCliente: TFormCadCliente
           Caption = 'Feminino'
           TabOrder = 6
         end
+        object PanelBotoes: TPanel
+          Left = 24
+          Top = 140
+          Width = 633
+          Height = 41
+          Color = clBtnHighlight
+          TabOrder = 7
+          object btnNovo: TBitBtn
+            Left = 8
+            Top = 8
+            Width = 75
+            Height = 25
+            Caption = 'Novo'
+            TabOrder = 0
+            OnClick = btnNovoClick
+          end
+          object btnExcluir: TBitBtn
+            Left = 364
+            Top = 8
+            Width = 75
+            Height = 25
+            Caption = 'Excluir'
+            TabOrder = 1
+            OnClick = btnExcluirClick
+          end
+          object btnGravar: TBitBtn
+            Left = 454
+            Top = 8
+            Width = 75
+            Height = 25
+            Caption = 'Gravar'
+            TabOrder = 2
+            OnClick = btnGravarClick
+          end
+          object btnCancelar: TBitBtn
+            Left = 544
+            Top = 8
+            Width = 75
+            Height = 25
+            Caption = 'Cancelar'
+            TabOrder = 3
+            OnClick = btnCancelarClick
+          end
+        end
       end
       object TabEndereco: TTabSheet
         Caption = 'Endere'#231'o'
-        Enabled = False
         object gridEndereco: TDBGrid
           Left = 8
-          Top = 4
+          Top = 8
           Width = 721
-          Height = 149
-          DataSource = DataSourceEndereco
+          Height = 129
+          DataSource = DataSourceIBQEndereco
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
@@ -290,7 +293,7 @@ object FormCadCliente: TFormCadCliente
             item
               Expanded = False
               FieldName = 'DS_LOGRADOURO'
-              Width = 113
+              Width = 108
               Visible = True
             end
             item
@@ -323,21 +326,40 @@ object FormCadCliente: TFormCadCliente
             item
               Expanded = False
               FieldName = 'NM_CIDADE'
-              Width = 179
+              Width = 78
               Visible = True
             end>
+        end
+        object btnAdd: TBitBtn
+          Left = 616
+          Top = 152
+          Width = 33
+          Height = 25
+          Caption = '+'
+          TabOrder = 1
+          OnClick = btnAddClick
+        end
+        object btnRemover: TBitBtn
+          Left = 656
+          Top = 152
+          Width = 33
+          Height = 25
+          Caption = '-'
+          TabOrder = 2
+          OnClick = btnRemoverClick
         end
       end
       object TabContato: TTabSheet
         Caption = 'Contato'
         Enabled = False
         ImageIndex = 1
-        object DBGrid2: TDBGrid
+        object gridContato: TDBGrid
           Left = 8
-          Top = 12
-          Width = 505
-          Height = 101
-          DataSource = DataSourceContato
+          Top = 8
+          Width = 713
+          Height = 137
+          DataSource = DataSourceIBQContato
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
@@ -348,41 +370,54 @@ object FormCadCliente: TFormCadCliente
             item
               Expanded = False
               FieldName = 'NR_SEQ'
-              Title.Caption = 'Nr'
-              Width = 57
               Visible = True
             end
             item
               Expanded = False
               FieldName = 'CD_PESSOA'
-              Title.Caption = 'C'#243'd Pessoa'
               Visible = True
             end
             item
               Expanded = False
               FieldName = 'NM_CONTATO'
-              Title.Caption = 'Nome'
-              Width = 134
+              Width = 219
               Visible = True
             end
             item
               Expanded = False
               FieldName = 'NR_TELEFONE'
-              Title.Caption = 'Telefone'
               Visible = True
             end
             item
               Expanded = False
               FieldName = 'DS_EMAIL'
-              Title.Caption = 'E-Mail'
               Visible = True
             end>
+        end
+        object btnAddContato: TBitBtn
+          Left = 616
+          Top = 152
+          Width = 33
+          Height = 25
+          Caption = '+'
+          TabOrder = 1
+          OnClick = btnAddContatoClick
+        end
+        object btnRemoverContato: TBitBtn
+          Left = 656
+          Top = 152
+          Width = 33
+          Height = 25
+          Caption = '-'
+          TabOrder = 2
+          OnClick = btnRemoverContatoClick
         end
       end
     end
   end
   object DataSourcePessoa: TDataSource
     DataSet = DM.CAD_PESSOA
+    OnStateChange = DataSourcePessoaStateChange
     Left = 448
     Top = 24
   end
@@ -401,14 +436,14 @@ object FormCadCliente: TFormCadCliente
     Left = 544
     Top = 24
   end
-  object DataSourceEndereco: TDataSource
+  object DataSourceIBQEndereco: TDataSource
     DataSet = DM.IBQCAD_ENDERECO
-    Left = 576
+    Left = 624
     Top = 24
   end
-  object DataSourceContato: TDataSource
-    DataSet = DM.CAD_CONTATO
-    Left = 608
+  object DataSourceIBQContato: TDataSource
+    DataSet = DM.IBQCAD_CONTATO
+    Left = 664
     Top = 24
   end
 end
